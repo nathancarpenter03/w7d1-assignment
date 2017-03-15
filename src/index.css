@@ -6,3 +6,19 @@ img {
     width: 100%;
 }
 
+.new-todo-input {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.new-category-input {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.todo-list {
+  width: 500px;
+}
+

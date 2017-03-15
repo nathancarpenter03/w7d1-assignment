@@ -3,12 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Load components
-import App from './components/App';
+import Todos from './components/Todos';
 import './index.css';
 
 
 ReactDOM.render(
-  <App />,
+  <Todos />,
   document.getElementById('root')
 );
 
