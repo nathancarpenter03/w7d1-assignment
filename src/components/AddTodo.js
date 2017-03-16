@@ -3,38 +3,23 @@ import React from 'react'
 class AddTodo extends React.Component {
     constructor(props) {
         super(props)
-
+        this.onClick = this.onClick.bind(this)
         this.state = {
             description: '',
-            category: '',
-            getTodos: props.getTodos
+            category: ''
         }
     }
 
-    addTodo(getTodos) {
-        if (this.state.description !== '' && this.state.category !== '') {
-            fetch('/api/v1/todos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    todo: this.state.description,
-                    category: this.state.category,
-                    completed: false
-                })
-            })
-            .then(response => response.json())
-            .then(todo => {
-                this.setState({
-                    description: '',
-                    category: ''
-                })
+    // Handles the Add Todo button click, runs parent component addTodo method, and clears the state, causing a render()
+    onClick(addTodo) {
+        // Call parent addTodo method
+        addTodo(this.state.description, this.state.category)
 
-            this.state.getTodos(getTodos)                
-            })
-            
-        }
+        // Sets state of fields, and triggers render() again
+        this.setState({
+            description: '',
+            category: ''
+        })
     }
 
     render() {
@@ -52,12 +37,17 @@ class AddTodo extends React.Component {
                 <div className="input-group">
                     <input type="text" className="form-control" value={this.state.description} onChange={(e) => this.setState({description: e.target.value})} />
                     <span className="input-group-btn">
-                        <button className="btn btn-default" type="button" onClick={() => this.addTodo(this.props.getTodos)}>Add Todo</button>
+                        <button className="btn btn-default" type="button" onClick={()=> this.onClick(this.props.addTodo)}>Add Todo</button>
                     </span>
                 </div>
             </div>
         </div>
     }
+}
+
+// Enforce property requirements
+AddTodo.propTypes = {
+    addTodo: React.PropTypes.func.isRequired
 }
 
 export default AddTodo
