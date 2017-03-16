@@ -25,3 +25,12 @@ img {
 .done {
   text-decoration: line-through;
 }
+
+.well {
+  display: flex;
+  justify-content: center; 
+}
+
+.nav-button {
+  margin-left: 2vw; 
+}

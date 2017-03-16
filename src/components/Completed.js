@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Layout from './Layout'
 import { browserHistory } from 'react-router';
-import Todo from './Todo'
+import Todo from './Todo';
+import AddTodo from './AddTodo';
 
 class Completed extends React.Component {
     render() {
@@ -10,13 +11,11 @@ class Completed extends React.Component {
         let completedTodos = this.props.sharedTodos.filter((todo) => todo.completed === 'yes').map((todo, key) => <Todo key={key} {...todo} />)
 
         return <Layout>
-            <div className="page-header">
-            <h1>Completed Tasks</h1>
-            </div>
             <div className="well well-sm">
-                <button className="btn btn-default" type="button" onClick={() => browserHistory.push('/')}>View All Todos</button>
+                <button className="btn btn-default nav-button" type="button" onClick={() => browserHistory.push('/')}>View All Todos</button>
+                <button className="btn btn-default nav-button" type="button" onClick={() => browserHistory.push('/completed')}>View Completed Todos</button>
             </div>
-
+            <AddTodo addTodo={this.addTodo} />
             <ul className="list-group">
                 {completedTodos}
             </ul>

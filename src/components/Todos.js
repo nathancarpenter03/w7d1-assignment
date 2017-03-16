@@ -73,7 +73,8 @@ class Todos extends React.Component {
         // Return our Layout, wrapped around AddTodo and array of Todo components
         return <Layout>
             <div className="well well-sm">
-                <button className="btn btn-default" type="button" onClick={() => browserHistory.push('/completed')}>Completed Todos</button>
+                <button className="btn btn-default nav-button" type="button" onClick={() => browserHistory.push('/')}>View All Todos</button>
+                <button className="btn btn-default nav-button" type="button" onClick={() => browserHistory.push('/completed')}>View Completed Todos</button>
             </div>
             <AddTodo addTodo={this.addTodo} />
             <ul className="list-group">
